@@ -1,9 +1,9 @@
 [中文](https://github.com/twelvet-s/twelvet/blob/master/README.md) | [English](https://github.com/twelvet-s/twelvet/blob/master/README_EN.md)
 
-这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统
-
 # 🚀twelvet
 # JDK >= 17
+
+## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统
 
 [![AUR](https://img.shields.io/github/license/twelvet-s/twelvet)](https://github.com/twelvet-s/twelvet/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Author-TwelveT-orange.svg)](https://twelvet.cn)
