@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>twelvet</artifactId>
+        <groupId>com.twelvet</groupId>
+        <version>3.0.5</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>twelvet-api</artifactId>
+    <packaging>pom</packaging>
+
+    <description>远程API适配</description>
+
+    <modules>
+        <module>twelvet-api-system</module>
+        <module>twelvet-api-job</module>
+        <module>twelvet-api-dfs</module>
+        <module>twelvet-api-gen</module>
+        <module>twelvet-api-auth</module>
+    </modules>
+
+    <dependencies>
+
+        <!--feign 注解依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--twelvet通用核心-->
+        <dependency>
+            <groupId>com.twelvet</groupId>
+            <artifactId>twelvet-framework-core</artifactId>
+        </dependency>
+
+        <!--Swagger-->
+        <dependency>
+            <groupId>com.twelvet</groupId>
+            <artifactId>twelvet-framework-swagger</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

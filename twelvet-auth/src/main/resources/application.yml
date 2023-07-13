@@ -1,0 +1,67 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    # 应用名称
+    name: @artifactId@
+  profiles:
+    # 环境配置
+    active: @active@
+  cloud:
+    nacos:
+      discovery:
+        # 解决获取IP为内网，一般微服务采用内网安全性、可用性高
+        # ip: 127.0.0.1
+        # 服务注册地址
+        server-addr: ${NACOS_HOST:twelvet-nacos}:${NACOS_PORT:8848}
+        # 命名空间
+        namespace: @nacos.namespace@
+      config:
+        # 配置中心地址
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        # 配置文件格式
+        file-extension: yml
+        # 命名空间
+        namespace: @nacos.namespace@
+        # 配置组
+        group: DEFAULT_GROUP
+        # 共享配置
+        # shared-configs:
+          # - data-id: twelvet-app-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+    # 暂时修复因sentinel导致的无法启动
+    openfeign:
+      lazy-attributes-resolution: true
+  config:
+    import:
+      - optional:nacos:twelvet-app-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+
+  # 接入第三方OAuth2登录（开发功能-dev）
+  security:
+    oauth2:
+      client:
+        registration:
+          gitee:
+            # 关联OAuth2 Server
+            provider: gitee
+            client-id: ae3e66546a8ff8cd67050a5558dcd6b4b25a474cb6607b9b1a09bf921d1f10ae
+            client-secret: 1dd8a3e087a2c3ea54232f8a160f018b8ec28fbc23d06a876340c12e561681c2
+            # 授权类型
+            authorization-grant-type: authorization_code
+            # 授权范围
+            scope: user_info
+            # 回调地址
+            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
+            client-name: Gitee
+        provider:
+          gitee:
+            # 登录地址
+            authorization-uri: https://gitee.com/oauth/authorize
+            # 换取token
+            token-uri: https://gitee.com/oauth/token
+            # 取得的user详情中的属性id的值作为Client的已认证的用户的用户名
+            user-name-attribute: id
+            # 获取用户信息
+            user-info-uri: https://gitee.com/api/v5/user

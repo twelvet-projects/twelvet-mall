@@ -1,0 +1,159 @@
+version: '3'
+services:
+  twelvet-mysql:
+    container_name: twelvet-mysql
+    restart: always
+    image: twelvet-mysql
+    build:
+      context: ./mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/logs:/logs
+      - ./mysql/data:/var/lib/mysql
+    command: [
+        'mysqld',
+        '--innodb-buffer-pool-size=80M',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+        '--default-time-zone=+8:00',
+        '--lower-case-table-names=1'
+    ]
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: 123456
+
+  twelvet-redis:
+    container_name: twelvet-redis
+    restart: always
+    image: twelvet-redis
+    privileged: true
+    build:
+      context: ./redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/conf/redis.conf:/home/twelvet/redis/redis.conf
+      - ./redis/data:/data
+    command: redis-server /home/twelvet/redis/redis.conf
+
+  twelvet-nacos:
+    container_name: twelvet-nacos
+    image: twelvet-nacos
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    restart: always
+    privileged: true
+    build:
+      context: ./nacos
+    depends_on:
+      - twelvet-mysql
+    volumes:
+      - ./nacos/logs/:/home/nacos/logs
+      - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+
+  twelvet-nginx:
+    container_name: twelvet-nginx
+    restart: always
+    image: twelvet-nginx
+    environment:
+      - TZ=Asia/Shanghai
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/html:/home/twelvet/twelvet-ui
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - twelvet-gateway
+    links:
+      - twelvet-gateway
+
+  twelvet-gateway:
+    container_name: twelvet-gateway
+    image: twelvet-gateway
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/gateway
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+
+  twelvet-auth:
+    container_name: twelvet-auth
+    image: twelvet-auth
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/auth
+      dockerfile: dockerfile
+
+  twelvet-server-system:
+    container_name: twelvet-server-system
+    image: twelvet-server-system
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/server/system
+      dockerfile: dockerfile
+
+  twelvet-server-job:
+    container_name: twelvet-server-job
+    image: twelvet-server-job
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/server/job
+      dockerfile: dockerfile
+
+  twelvet-server-dfs:
+    container_name: twelvet-server-dfs
+    image: twelvet-server-dfs
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/server/dfs
+      dockerfile: dockerfile
+
+  twelvet-visual-monitor:
+    container_name: twelvet-visual-monitor
+    image: twelvet-visual-monitor
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/visual/monitor
+      dockerfile: dockerfile

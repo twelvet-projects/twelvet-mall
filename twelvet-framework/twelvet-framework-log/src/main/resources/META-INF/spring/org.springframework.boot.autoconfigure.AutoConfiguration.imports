@@ -1,0 +1,2 @@
+com.twelvet.framework.log.LogAutoConfiguration
+com.twelvet.framework.log.filter.WebLogFilter
