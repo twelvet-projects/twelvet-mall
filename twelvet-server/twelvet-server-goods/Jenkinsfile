@@ -1,0 +1,54 @@
+pipeline {
+  agent any
+
+  tools {
+    maven 'maven'
+  }
+
+  stages {
+    stage('building shh dev') {
+      when {
+        beforeAgent true
+        branch 'dev*'
+      }
+      steps {
+        sh 'mvn clean install -P dev'
+      }
+    }
+
+    stage('building twelvet pro') {
+      when {
+        beforeAgent true
+        branch 'master*'
+      }
+      steps {
+        sh 'mvn clean install -P product'
+      }
+    }
+
+    stage('archiveArtifacts twelvet-server-goods') {
+      steps {
+        dir('twelvet-server') {
+          archiveArtifacts artifacts: '**/twelvet-server-goods/target/*.jar', fingerprint: true
+        }
+      }
+    }
+  }
+}
+
+node {
+  if (env.BRANCH_NAME.contains('master')) {
+    def remote = [:]
+    remote.name = 'twelvet'
+    remote.host = env.REMOTE_HOST
+    withCredentials([usernamePassword(credentialsId: 'twelvet', passwordVariable: 'password', usernameVariable: 'userName')]) {
+      remote.user = userName
+      remote.password = password
+      remote.allowAnyHosts = true
+      stage('push to twelvet') {
+        sshPut remote: remote, from: 'twelvet-server/twelvet-server-goods/target/twelvet-server-goods.jar', into: '/twelvet/docker/twelvet/server/system/jar/'
+        sshCommand remote: remote, command: 'docker-compose -f /twelvet/docker/docker-compose.yml restart twelvet-server-goods'
+      }
+    }
+  }
+}

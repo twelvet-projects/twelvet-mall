@@ -64,6 +64,7 @@
         <hutool.version>5.8.19</hutool.version>
         <redisson.version>3.20.0</redisson.version>
         <qiniu.version>7.13.0</qiniu.version>
+        <netty-websocket.version>1.0.5</netty-websocket.version>
 
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin>
@@ -297,11 +298,32 @@
                 <version>${twelvet.version}</version>
             </dependency>
 
+            <!--Goods API-->
+            <dependency>
+                <groupId>com.twelvet</groupId>
+                <artifactId>twelvet-api-goods</artifactId>
+                <version>${twelvet.version}</version>
+            </dependency>
+
+            <!--IM API-->
+            <dependency>
+                <groupId>com.twelvet</groupId>
+                <artifactId>twelvet-api-im</artifactId>
+                <version>${twelvet.version}</version>
+            </dependency>
+
             <!--七牛云oss-->
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
                 <version>${qiniu.version}</version>
+            </dependency>
+
+            <!--WebSocket-->
+            <dependency>
+                <groupId>cn.twelvet.websocket</groupId>
+                <artifactId>netty-websocket-spring-boot-starter</artifactId>
+                <version>${netty-websocket.version}</version>
             </dependency>
 
         </dependencies>

@@ -27,4 +27,14 @@ public interface ServiceNameConstants {
 	 */
 	String MQ_SERVICE = "twelvet-server-mq";
 
+	/**
+	 * IM服务的serviceId
+	 */
+	String IM_SERVICE = "twelvet-server-im";
+
+	/**
+	 * Goods服务的serviceId
+	 */
+	String GOODS_SERVICE = "twelvet-server-goods";
+
 }

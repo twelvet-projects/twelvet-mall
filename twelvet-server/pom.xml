@@ -19,6 +19,8 @@
         <module>twelvet-server-job</module>
         <module>twelvet-server-dfs</module>
         <module>twelvet-server-gen</module>
+        <module>twelvet-server-goods</module>
+        <module>twelvet-server-im</module>
     </modules>
 
     <dependencies>
