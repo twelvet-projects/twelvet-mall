@@ -1,4 +1,4 @@
-package com.twelvet.server;
+package com.twelvet.server.im;
 
 import com.twelvet.framework.core.annotation.EnableTWTFeignClients;
 import com.twelvet.framework.core.annotation.EnableTwelveTConfig;
