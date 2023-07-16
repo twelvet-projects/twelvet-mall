@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twelvet.server.goods.mapper.GoodsMapper">
+    
+    <resultMap type="Goods" id="GoodsResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="shopId"    column="shop_id"    />
+        <result property="originalPrice"    column="original_price"    />
+        <result property="price"    column="price"    />
+        <result property="brief"    column="brief"    />
+        <result property="content"    column="content"    />
+        <result property="pic"    column="pic"    />
+        <result property="imgs"    column="imgs"    />
+        <result property="status"    column="status"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="soldNum"    column="sold_num"    />
+        <result property="totalStocks"    column="total_stocks"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="version"    column="version"    />
+    </resultMap>
+
+    <sql id="selectGoodsVo">
+        select goods_id, goods_name, shop_id, original_price, price, brief, content, pic, imgs, status, category_id, sold_num, total_stocks, created_time, updated_time, version from goods
+    </sql>
+
+    <select id="selectGoodsList" parameterType="Goods" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"/>
+        <where>  
+            <if test="goodsName != null  and goodsName != ''"> and goods_name like concat('%', #{goodsName}, '%')</if>
+            <if test="shopId != null "> and shop_id = #{shopId}</if>
+            <if test="originalPrice != null "> and original_price = #{originalPrice}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="brief != null  and brief != ''"> and brief = #{brief}</if>
+            <if test="content != null  and content != ''"> and content = #{content}</if>
+            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
+            <if test="imgs != null  and imgs != ''"> and imgs = #{imgs}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="categoryId != null "> and category_id = #{categoryId}</if>
+            <if test="soldNum != null "> and sold_num = #{soldNum}</if>
+            <if test="totalStocks != null "> and total_stocks = #{totalStocks}</if>
+            <if test="createdTime != null "> and created_time = #{createdTime}</if>
+            <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+            <if test="version != null "> and version = #{version}</if>
+        </where>
+    </select>
+    
+    <select id="selectGoodsByGoodsId" parameterType="Long" resultMap="GoodsResult">
+        <include refid="selectGoodsVo"/>
+        where goods_id = #{goodsId}
+    </select>
+        
+    <insert id="insertGoods" parameterType="Goods" useGeneratedKeys="true" keyProperty="goodsId">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null and goodsName != ''">goods_name,</if>
+            <if test="shopId != null">shop_id,</if>
+            <if test="originalPrice != null">original_price,</if>
+            <if test="price != null">price,</if>
+            <if test="brief != null">brief,</if>
+            <if test="content != null">content,</if>
+            <if test="pic != null">pic,</if>
+            <if test="imgs != null">imgs,</if>
+            <if test="status != null">status,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="soldNum != null">sold_num,</if>
+            <if test="totalStocks != null">total_stocks,</if>
+            <if test="createdTime != null">created_time,</if>
+            <if test="updatedTime != null">updated_time,</if>
+            <if test="version != null">version,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsName != null and goodsName != ''">#{goodsName},</if>
+            <if test="shopId != null">#{shopId},</if>
+            <if test="originalPrice != null">#{originalPrice},</if>
+            <if test="price != null">#{price},</if>
+            <if test="brief != null">#{brief},</if>
+            <if test="content != null">#{content},</if>
+            <if test="pic != null">#{pic},</if>
+            <if test="imgs != null">#{imgs},</if>
+            <if test="status != null">#{status},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="soldNum != null">#{soldNum},</if>
+            <if test="totalStocks != null">#{totalStocks},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+            <if test="version != null">#{version},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGoods" parameterType="Goods">
+        update goods
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsName != null and goodsName != ''">goods_name = #{goodsName},</if>
+            <if test="shopId != null">shop_id = #{shopId},</if>
+            <if test="originalPrice != null">original_price = #{originalPrice},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="brief != null">brief = #{brief},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="pic != null">pic = #{pic},</if>
+            <if test="imgs != null">imgs = #{imgs},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="soldNum != null">sold_num = #{soldNum},</if>
+            <if test="totalStocks != null">total_stocks = #{totalStocks},</if>
+            <if test="createdTime != null">created_time = #{createdTime},</if>
+            <if test="updatedTime != null">updated_time = #{updatedTime},</if>
+            <if test="version != null">version = #{version},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+    <delete id="deleteGoodsByGoodsId" parameterType="Long">
+        delete from goods where goods_id = #{goodsId}
+    </delete>
+
+    <delete id="deleteGoodsByGoodsIds" parameterType="String">
+        delete from goods where goods_id in 
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+</mapper>

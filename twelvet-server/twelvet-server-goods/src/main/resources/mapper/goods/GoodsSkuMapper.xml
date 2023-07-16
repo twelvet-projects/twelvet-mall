@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twelvet.server.goods.mapper.GoodsSkuMapper">
+    
+    <resultMap type="GoodsSku" id="GoodsSkuResult">
+        <result property="skuId"    column="sku_id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="originalPrice"    column="original_price"    />
+        <result property="price"    column="price"    />
+        <result property="stocks"    column="stocks"    />
+        <result property="actualStocks"    column="actual_stocks"    />
+        <result property="pic"    column="pic"    />
+        <result property="skuName"    column="sku_name"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="createdTime"    column="created_time"    />
+        <result property="updatedTime"    column="updated_time"    />
+        <result property="version"    column="version"    />
+    </resultMap>
+
+    <sql id="selectGoodsSkuVo">
+        select sku_id, goods_id, original_price, price, stocks, actual_stocks, pic, sku_name, goods_name, is_delete, created_time, updated_time, version from goods_sku
+    </sql>
+
+    <select id="selectGoodsSkuList" parameterType="GoodsSku" resultMap="GoodsSkuResult">
+        <include refid="selectGoodsSkuVo"/>
+        <where>  
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="originalPrice != null "> and original_price = #{originalPrice}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="stocks != null "> and stocks = #{stocks}</if>
+            <if test="actualStocks != null "> and actual_stocks = #{actualStocks}</if>
+            <if test="pic != null  and pic != ''"> and pic = #{pic}</if>
+            <if test="skuName != null  and skuName != ''"> and sku_name like concat('%', #{skuName}, '%')</if>
+            <if test="goodsName != null  and goodsName != ''"> and goods_name like concat('%', #{goodsName}, '%')</if>
+            <if test="isDelete != null "> and is_delete = #{isDelete}</if>
+            <if test="createdTime != null "> and created_time = #{createdTime}</if>
+            <if test="updatedTime != null "> and updated_time = #{updatedTime}</if>
+            <if test="version != null "> and version = #{version}</if>
+        </where>
+    </select>
+    
+    <select id="selectGoodsSkuBySkuId" parameterType="Long" resultMap="GoodsSkuResult">
+        <include refid="selectGoodsSkuVo"/>
+        where sku_id = #{skuId}
+    </select>
+        
+    <insert id="insertGoodsSku" parameterType="GoodsSku" useGeneratedKeys="true" keyProperty="skuId">
+        insert into goods_sku
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">goods_id,</if>
+            <if test="originalPrice != null">original_price,</if>
+            <if test="price != null">price,</if>
+            <if test="stocks != null">stocks,</if>
+            <if test="actualStocks != null">actual_stocks,</if>
+            <if test="pic != null">pic,</if>
+            <if test="skuName != null">sku_name,</if>
+            <if test="goodsName != null">goods_name,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="createdTime != null">created_time,</if>
+            <if test="updatedTime != null">updated_time,</if>
+            <if test="version != null">version,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="originalPrice != null">#{originalPrice},</if>
+            <if test="price != null">#{price},</if>
+            <if test="stocks != null">#{stocks},</if>
+            <if test="actualStocks != null">#{actualStocks},</if>
+            <if test="pic != null">#{pic},</if>
+            <if test="skuName != null">#{skuName},</if>
+            <if test="goodsName != null">#{goodsName},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+            <if test="version != null">#{version},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGoodsSku" parameterType="GoodsSku">
+        update goods_sku
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="originalPrice != null">original_price = #{originalPrice},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="stocks != null">stocks = #{stocks},</if>
+            <if test="actualStocks != null">actual_stocks = #{actualStocks},</if>
+            <if test="pic != null">pic = #{pic},</if>
+            <if test="skuName != null">sku_name = #{skuName},</if>
+            <if test="goodsName != null">goods_name = #{goodsName},</if>
+            <if test="isDelete != null">is_delete = #{isDelete},</if>
+            <if test="createdTime != null">created_time = #{createdTime},</if>
+            <if test="updatedTime != null">updated_time = #{updatedTime},</if>
+            <if test="version != null">version = #{version},</if>
+        </trim>
+        where sku_id = #{skuId}
+    </update>
+
+    <delete id="deleteGoodsSkuBySkuId" parameterType="Long">
+        delete from goods_sku where sku_id = #{skuId}
+    </delete>
+
+    <delete id="deleteGoodsSkuBySkuIds" parameterType="String">
+        delete from goods_sku where sku_id in 
+        <foreach item="skuId" collection="array" open="(" separator="," close=")">
+            #{skuId}
+        </foreach>
+    </delete>
+</mapper>
