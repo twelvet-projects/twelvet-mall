@@ -1,11 +1,8 @@
 [中文](https://github.com/twelvet-s/twelvet/blob/master/README.md) | [English](https://github.com/twelvet-s/twelvet/blob/master/README_EN.md)
 
-这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
-
 # 🚀twelvet
-# JDK >= 17
 
-## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统
+# JDK >= 17
 
 [![AUR](https://img.shields.io/github/license/twelvet-s/twelvet)](https://github.com/twelvet-s/twelvet/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Author-TwelveT-orange.svg)](https://twelvet.cn)
@@ -14,6 +11,26 @@
 [![GitHub forks](https://img.shields.io/github/forks/twelvet-s/twelvet.svg?style=social&label=Fork)](https://github.com/twelvet-s/twelvet/network/members)
 [![star](https://gitee.com/twelvet/twelvet/badge/star.svg?theme=white)](https://gitee.com/twelvet/twelvet/stargazers)
 [![fork](https://gitee.com/twelvet/twelvet/badge/fork.svg?theme=white)](https://gitee.com/twelvet/twelvet/members)
+
+
+## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
+
+# 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)
+
+## 缓存（多级缓存：本地缓存，前端缓存）、使用文件缓存系统进行降低缓存成本
+
+## 分库分表
+
+## 限流
+
+## ES + Hbase
+
+## 集群(多副本沉余)
+
+## 冷热分离
+
+## 就近读取
+
 
 一款基于Spring Cloud Alibaba的权限管理系统，集成市面上流行库，可以作用为快速开发的一个框架使用
 
@@ -151,4 +168,5 @@ chmod 751 deploy.sh
 QQ群： [![加入QQ群](https://img.shields.io/badge/985830229-blue.svg)](https://jq.qq.com/?_wv=1027&k=cznM6Q00) 点击按钮入群。
 
 ## 🤝鸣谢
+
 感谢jetbrains提供的许可证[![jetbrains](https://cloud.twelvet.cn/jetbrains.png)](https://www.jetbrains.com?from=https://github.com/twelvet-s/twelvet)
