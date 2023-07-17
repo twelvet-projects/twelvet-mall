@@ -1,6 +1,7 @@
 package com.twelvet.server.goods.mapper;
 
 import com.twelvet.api.goods.domain.Goods;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -54,5 +55,13 @@ public interface GoodsMapper {
 	 * @return 结果
 	 */
 	public int deleteGoodsByGoodsIds(Long[] goodsIds);
+
+	/**
+	 * 扣减库存
+	 * @param goodsId 商品ID
+	 * @return 是否更新成功
+	 */
+	@Update("update `goods` set total_stocks = total_stocks - 1 where goods_id = #{goodsId} and total_stocks > 0")
+	public int deductionInventory(Long goodsId);
 
 }

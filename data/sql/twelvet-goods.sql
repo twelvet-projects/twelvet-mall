@@ -17,24 +17,26 @@ CREATE TABLE `goods`
     `goods_name`     varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci  NOT NULL DEFAULT '' COMMENT '商品名称',
     `shop_id`        bigint(20)                                               NULL     DEFAULT NULL COMMENT '店铺id',
     `original_price` decimal(15, 2)                                           NULL     DEFAULT 0.00 COMMENT '原价',
-    `price`          decimal(15, 2)                                           NULL     DEFAULT NULL COMMENT '现价',
+    `price`          decimal(15, 2)                                           NOT NULL COMMENT '现价',
     `brief`          varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci  NULL     DEFAULT '' COMMENT '简要描述,卖点等',
     `content`        text CHARACTER SET utf8 COLLATE utf8_general_ci          NULL COMMENT '详细描述',
     `pic`            varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci  NULL     DEFAULT NULL COMMENT '商品主图',
     `imgs`           varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '商品图片，以,分割',
-    `status`         int(1)                                                   NULL     DEFAULT 0 COMMENT '1:下架,-1:表示删除,0:表示正常状态',
+    `status`         int(1)                                                   NOT NULL DEFAULT 0 COMMENT '1:下架,-1:表示删除,0:表示正常状态',
     `category_id`    bigint(20) UNSIGNED                                      NULL     DEFAULT NULL COMMENT '商品分类',
-    `sold_num`       int(11)                                                  NULL     DEFAULT NULL COMMENT '销量',
-    `total_stocks`   int(11)                                                  NULL     DEFAULT 0 COMMENT '总库存',
+    `sold_num`       int(11)                                                  NOT NULL DEFAULT 0 COMMENT '销量',
+    `total_stocks`   int(11)                                                  NOT NULL DEFAULT 0 COMMENT '总库存',
     `created_time`   datetime                                                 NULL     DEFAULT NULL COMMENT '创建时间',
     `updated_time`   datetime                                                 NULL     DEFAULT NULL COMMENT '更新时间',
-    `version`        int(11)                                                  NULL     DEFAULT NULL COMMENT '版本 乐观锁',
+    `version`        int(11)                                                  NOT NULL DEFAULT 0 COMMENT '版本 乐观锁',
     PRIMARY KEY (`goods_id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8
   COLLATE = utf8_general_ci COMMENT = '商品表'
   ROW_FORMAT = DYNAMIC;
+
+INSERT INTO `goods` VALUES (1, '测试', NULL, 10.00, 1.00, '', NULL, NULL, NULL, 0, NULL, 0, 0, NULL, NULL, 0);
 
 -- ----------------------------
 -- Table structure for goods_sku

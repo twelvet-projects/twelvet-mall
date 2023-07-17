@@ -65,6 +65,7 @@
         <redisson.version>3.20.0</redisson.version>
         <qiniu.version>7.13.0</qiniu.version>
         <netty-websocket.version>1.0.5</netty-websocket.version>
+        <rocketmq.version>2.2.3</rocketmq.version>
 
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin>
@@ -324,6 +325,13 @@
                 <groupId>cn.twelvet.websocket</groupId>
                 <artifactId>netty-websocket-spring-boot-starter</artifactId>
                 <version>${netty-websocket.version}</version>
+            </dependency>
+
+            <!--rocketmq-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
 
         </dependencies>

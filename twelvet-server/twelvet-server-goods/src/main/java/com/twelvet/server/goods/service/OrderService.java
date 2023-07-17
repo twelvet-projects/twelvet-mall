@@ -9,11 +9,10 @@ import com.twelvet.api.goods.domain.dto.OrderVO;
  */
 public interface OrderService {
 
-    /**
-     * 提交订单
-     *
-     * @param orderVO 订单VO
-     */
-    void submit(OrderVO orderVO);
+	/**
+	 * 提交订单
+	 * @param orderVO 订单VO
+	 */
+	void submit(OrderVO orderVO);
 
 }

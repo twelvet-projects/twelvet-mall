@@ -13,24 +13,23 @@ import java.io.Serializable;
 @Schema(description = "商品对象")
 public class OrderVO implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 1L;
 
-    @Schema(description = "下单商品ID")
-    private Long goodsId;
+	@Schema(description = "下单商品ID")
+	private Long goodsId;
 
-    public Long getGoodsId() {
-        return goodsId;
-    }
+	public Long getGoodsId() {
+		return goodsId;
+	}
 
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
-    }
+	public void setGoodsId(Long goodsId) {
+		this.goodsId = goodsId;
+	}
 
-    @Override
-    public String toString() {
-        return "OrderVO{" +
-                "goodsId=" + goodsId +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "OrderVO{" + "goodsId=" + goodsId + '}';
+	}
+
 }

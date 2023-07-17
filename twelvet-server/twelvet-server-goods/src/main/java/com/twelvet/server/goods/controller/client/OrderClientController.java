@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,17 +27,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/client/order")
 public class OrderClientController extends TWTController {
 
-    @Autowired
-    private OrderService orderService;
+	@Autowired
+	private OrderService orderService;
 
-    /**
-     * 提交订单
-     */
-    @Operation(summary = "提交订单")
-    @PostMapping("/submit")
-    public AjaxResult submit(OrderVO orderVO) {
-        orderService.submit(orderVO);
-        return AjaxResult.success();
-    }
+	/**
+	 * 提交订单
+	 */
+	@Operation(summary = "提交订单")
+	@PostMapping("/submit")
+	public AjaxResult submit(@RequestBody OrderVO orderVO) {
+		orderService.submit(orderVO);
+		return AjaxResult.success();
+	}
 
 }
