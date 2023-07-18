@@ -12,7 +12,6 @@
 [![star](https://gitee.com/twelvet/twelvet/badge/star.svg?theme=white)](https://gitee.com/twelvet/twelvet/stargazers)
 [![fork](https://gitee.com/twelvet/twelvet/badge/fork.svg?theme=white)](https://gitee.com/twelvet/twelvet/members)
 
-
 ## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
 
 # 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)
@@ -30,7 +29,6 @@
 ## 冷热分离
 
 ## 就近读取
-
 
 一款基于Spring Cloud Alibaba的权限管理系统，集成市面上流行库，可以作用为快速开发的一个框架使用
 
@@ -88,6 +86,8 @@ com.twelvet
 │       └── twelvet-server-job                             // 定时任务 [8082]
 │       └── twelvet-server-dfs                             // DFS服务 [8083]
 │       └── twelvet-server-gen                             // 代码生成 [8084]
+│       └── twelvet-server-im                              // IM     [8085]
+│       └── twelvet-server-goods                           // 商品服务 [8086]
 ├── twelvet-visual        // 图形化管理模块
 |       └── twelvet-visual-sentinel                        // sentinel [8101]
 │       └── twelvet-visual-monitor                         // 监控中心 [8102]

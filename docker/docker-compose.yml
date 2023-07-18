@@ -157,3 +157,29 @@ services:
     build:
       context: ./twelvet/visual/monitor
       dockerfile: dockerfile
+
+  twelvet-server-im:
+    container_name: twelvet-server-im
+    image: twelvet-server-im
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/server/im
+      dockerfile: dockerfile
+
+  twelvet-server-goods:
+    container_name: twelvet-server-goods
+    image: twelvet-server-goods
+    restart: always
+    depends_on:
+      - twelvet-nacos
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+    build:
+      context: ./twelvet/server/goods
+      dockerfile: dockerfile

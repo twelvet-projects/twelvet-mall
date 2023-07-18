@@ -22,6 +22,9 @@ init() {
 
   echo "begin copy twelvet-server-system "
   cp ../twelvet-server/twelvet-server-system/target/twelvet-server-system.jar ./twelvet/server/system/jar
+
+  echo "begin copy twelvet-server-goods "
+    cp ../twelvet-server/twelvet-server-goods/target/twelvet-server-goods.jar ./twelvet/server/goods/jar
 }
 
 # 开启所需端口
@@ -40,7 +43,7 @@ base() {
 
 # 启动程序模块（必须）
 server() {
-  docker-compose up -d twelvet-nacos twelvet-gateway twelvet-auth twelvet-server-system
+  docker-compose up -d twelvet-nacos twelvet-gateway twelvet-auth twelvet-server-system twelvet-server-goods
 }
 
 # 启动nginx（必须）
@@ -59,7 +62,7 @@ nginx() {
   else
     echo "前端已初始化"
   fi
-  
+
   docker-compose up -d twelvet-nginx
 }
 
