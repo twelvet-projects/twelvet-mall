@@ -1,11 +1,15 @@
-DROP DATABASE IF EXISTS `twelvet`;
+DROP
+    DATABASE IF EXISTS `twelvet`;
 
-CREATE DATABASE `twelvet` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE
+    DATABASE `twelvet` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET
+    FOREIGN_KEY_CHECKS = 0;
 
-USE `twelvet`;
+USE
+    `twelvet`;
 
 -- ----------------------------
 -- Table structure for gen_table
@@ -694,8 +698,12 @@ CREATE TABLE `sys_oauth_client_details`
 -- Records of sys_oauth_client_details
 -- ----------------------------
 INSERT INTO `sys_oauth_client_details`
-VALUES ('twelvet', NULL, '123456', 'server', 'password,sms,refresh_token,authorization_code', 'http://twelvet.cn', NULL,
-        3600, 7200, NULL, NULL);
+VALUES ('customer', NULL, '123456', 'server', 'password,sms,refresh_token,authorization_code', 'http://www.twelvet.cn',
+        NULL, 3600, 7200, NULL, NULL);
+INSERT INTO `sys_oauth_client_details`
+VALUES ('twelvet', NULL, '123456', 'server', 'password,sms,refresh_token,authorization_code', 'http://www.twelvet.cn',
+        NULL, 3600, 7200, NULL, NULL);
+
 
 -- ----------------------------
 -- Table structure for sys_operation_log
@@ -1068,7 +1076,32 @@ CREATE TABLE `undo_log`
   ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`
+(
+    `id`       int(11)                                                       NOT NULL AUTO_INCREMENT COMMENT 'Id',
+    `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户昵称',
+    `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '账号',
+    `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 2
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = '客户表'
+  ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user`
+VALUES (1, 'twelvet', 'admin', '$2a$10$MBq3PvaIX9Yghhu.mm45wO8IC4WKXAUST9LvneCsQ71k/mrOdN6SO');
+
+
+-- ----------------------------
 -- Records of undo_log
 -- ----------------------------
 
-SET FOREIGN_KEY_CHECKS = 1;
+SET
+    FOREIGN_KEY_CHECKS = 1;

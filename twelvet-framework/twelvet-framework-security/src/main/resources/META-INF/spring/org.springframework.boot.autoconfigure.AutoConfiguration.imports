@@ -1,3 +1,4 @@
+com.twelvet.framework.security.service.impl.CusUserDetailsServiceImpl
 com.twelvet.framework.security.service.impl.TwTUserDetailsServiceImpl
 com.twelvet.framework.security.service.impl.TwTSmsDetailsServiceImpl
 com.twelvet.framework.security.service.impl.TWTRedisOAuth2AuthorizationService
