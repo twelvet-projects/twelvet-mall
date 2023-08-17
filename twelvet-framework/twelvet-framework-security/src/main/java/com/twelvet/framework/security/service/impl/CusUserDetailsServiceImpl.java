@@ -54,18 +54,18 @@ public class CusUserDetailsServiceImpl implements TwUserDetailsService {
 
 		R<User> userResult = remoteCusUserService.getUserInfo(username);
 
-        Set<String> dbAuthsSet = new HashSet<>();
+		Set<String> dbAuthsSet = new HashSet<>();
 
-        Collection<? extends GrantedAuthority> authorities = AuthorityUtils
-                .createAuthorityList(dbAuthsSet.toArray(new String[0]));
+		Collection<? extends GrantedAuthority> authorities = AuthorityUtils
+			.createAuthorityList(dbAuthsSet.toArray(new String[0]));
 
-        User user = userResult.getData();
+		User user = userResult.getData();
 
-        return new LoginUser(user.getId(), 0L, null, user.getUsername(),
-                SecurityConstants.BCRYPT + user.getPassword(), true, true, true, true, authorities);
+		return new LoginUser(user.getId(), 0L, null, user.getUsername(), SecurityConstants.BCRYPT + user.getPassword(),
+				true, true, true, true, authorities);
 	}
 
-    /**
+	/**
 	 * 是否支持此客户端校验
 	 * @param clientId 目标客户端
 	 * @param grantType 采用登录模式

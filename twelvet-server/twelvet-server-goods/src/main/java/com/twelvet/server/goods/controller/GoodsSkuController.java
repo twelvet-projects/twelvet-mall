@@ -46,7 +46,6 @@ public class GoodsSkuController extends TWTController {
 
 	/**
 	 * 导出单品SKU列表
-	 *
 	 * @return
 	 */
 	@ResponseExcel
