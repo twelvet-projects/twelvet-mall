@@ -58,7 +58,6 @@
         <shardingsphere-jdbc.version>5.3.2</shardingsphere-jdbc.version>
 
         <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
-        <poi.version>5.2.3</poi.version>
         <commons.io.version>2.11.0</commons.io.version>
         <velocity.version>2.3</velocity.version>
         <hutool.version>5.8.19</hutool.version>
@@ -66,10 +65,12 @@
         <qiniu.version>7.13.0</qiniu.version>
         <netty-websocket.version>1.0.5</netty-websocket.version>
         <rocketmq.version>2.2.3</rocketmq.version>
+        <excel-spring-boot-starter.version>3.0.1</excel-spring-boot-starter.version>
 
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin>
         <git.commit.plugin>4.9.9</git.commit.plugin>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>
 
     <!--依赖版本声明-->
@@ -173,6 +174,13 @@
                 <version>${commons.io.version}</version>
             </dependency>
 
+            <!--Excel-->
+            <dependency>
+                <groupId>cn.twelvet.excel</groupId>
+                <artifactId>excel-spring-boot-starter</artifactId>
+                <version>${excel-spring-boot-starter.version}</version>
+            </dependency>
+
             <!--Swagger-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
@@ -192,13 +200,6 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
                 <version>${springdoc.version}</version>
-            </dependency>
-
-            <!-- excel工具 -->
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
             </dependency>
 
             <!--多数据源-->
@@ -446,11 +447,38 @@
         </pluginManagement>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <debug>false</debug>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
             <!--打包jar 与git commit 关联插件-->
             <plugin>
                 <groupId>io.github.git-commit-id</groupId>
                 <artifactId>git-commit-id-maven-plugin</artifactId>
                 <version>${git.commit.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <!--因为项目定制了jackson的日期时间序列化/反序列化格式，因此这里要进行配置,不然通过management.info.git.mode=full进行完整git信息监控时会存在问题-->
+                    <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat>
+                    <includeOnlyProperties>
+                        <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.commit.(id|message|time).*$</includeOnlyProperty>
+                    </includeOnlyProperties>
+                </configuration>
             </plugin>
             <!--代码格式插件，默认使用spring 规则-->
             <plugin>

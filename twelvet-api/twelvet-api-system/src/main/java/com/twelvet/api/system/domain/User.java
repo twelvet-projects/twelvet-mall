@@ -1,11 +1,10 @@
 package com.twelvet.api.system.domain;
 
-import com.twelvet.framework.utils.annotation.excel.Excel;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.twelvet.framework.core.application.domain.BaseEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-
-import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * 客户对象 user
@@ -25,17 +24,17 @@ public class User extends BaseEntity {
 
 	/** 用户名称 */
 	@Schema(description = "用户名称")
-	@Excel(name = "用户名称")
+	@ExcelProperty(value = "用户名称")
 	private String nickname;
 
 	/** 账号 */
 	@Schema(description = "账号")
-	@Excel(name = "账号")
+	@ExcelProperty(value = "账号")
 	private String username;
 
 	/** 密码 */
 	@Schema(description = "密码")
-	@Excel(name = "密码")
+	@ExcelProperty(value = "密码")
 	private String password;
 
 	public void setId(Long id) {

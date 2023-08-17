@@ -1,30 +1,21 @@
 package com.twelvet.server.goods.controller;
 
-import java.util.List;
-
+import cn.twelvet.excel.annotation.ResponseExcel;
 import com.twelvet.api.goods.domain.GoodsSku;
-import com.twelvet.framework.core.application.page.TableDataInfo;
-import com.twelvet.server.goods.service.IGoodsSkuService;
-import jakarta.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Operation;
-import com.twelvet.framework.log.annotation.Log;
-import com.twelvet.framework.log.enums.BusinessType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import com.twelvet.framework.core.application.controller.TWTController;
 import com.twelvet.framework.core.application.domain.JsonResult;
-import com.twelvet.framework.utils.poi.ExcelUtils;
+import com.twelvet.framework.core.application.page.TableDataInfo;
 import com.twelvet.framework.jdbc.web.utils.PageUtils;
+import com.twelvet.framework.log.annotation.Log;
+import com.twelvet.framework.log.enums.BusinessType;
+import com.twelvet.server.goods.service.IGoodsSkuService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 单品SKUController
@@ -55,15 +46,16 @@ public class GoodsSkuController extends TWTController {
 
 	/**
 	 * 导出单品SKU列表
+	 *
+	 * @return
 	 */
+	@ResponseExcel
 	@Operation(summary = "导出单品SKU列表")
 	@PreAuthorize("@role.hasPermi('{permissionPrefix}:export')")
 	@Log(service = "单品SKU", businessType = BusinessType.EXPORT)
 	@PostMapping("/export")
-	public void export(HttpServletResponse response, GoodsSku goodsSku) {
-		List<GoodsSku> list = goodsSkuService.selectGoodsSkuList(goodsSku);
-		ExcelUtils<GoodsSku> util = new ExcelUtils<GoodsSku>(GoodsSku.class);
-		util.exportExcel(response, list, "单品SKU数据");
+	public List<GoodsSku> export(GoodsSku goodsSku) {
+		return goodsSkuService.selectGoodsSkuList(goodsSku);
 	}
 
 	/**

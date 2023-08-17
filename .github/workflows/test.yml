@@ -1,0 +1,52 @@
+name: test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ 21 ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: zulu
+          cache: maven
+
+      - name: mvn spring-javaformat:validate
+        run: mvn spring-javaformat:validate
+
+      - name: mvn clean install
+        run: mvn clean install
+
+      - name: init
+        run: cd docker && chmod 751 ./deploy.sh && ./deploy.sh init
+
+      - name: Start Base
+        run: cd docker && ./deploy.sh base
+
+      - name: Start Server
+        run: cd docker && ./deploy.sh server
+
+      - name: Check Server twelvet-gateway
+        run: |
+          sleep 30
+          docker logs --tail 500 twelvet-gateway
+
+      - name: Check Server twelvet-auth
+        run: |
+          docker logs --tail 500 twelvet-auth
+
+      - name: Check Server twelvet-server-system
+        run: |
+          docker logs --tail 500 twelvet-server-system

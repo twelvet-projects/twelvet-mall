@@ -1,14 +1,14 @@
 package com.twelvet.api.goods.domain;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.twelvet.framework.utils.annotation.excel.Excel;
 import com.twelvet.framework.core.application.domain.BaseEntity;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 单品SKU对象 goods_sku
@@ -28,64 +28,64 @@ public class GoodsSku extends BaseEntity {
 
 	/** 商品ID */
 	@Schema(description = "商品ID")
-	@Excel(name = "商品ID")
+	@ExcelProperty(value = "商品ID")
 	private Long goodsId;
 
 	/** 原价 */
 	@Schema(description = "原价")
-	@Excel(name = "原价")
+	@ExcelProperty(value = "原价")
 	private BigDecimal originalPrice;
 
 	/** 价格 */
 	@Schema(description = "价格")
-	@Excel(name = "价格")
+	@ExcelProperty(value = "价格")
 	private BigDecimal price;
 
 	/** 商品在付款减库存的状态下，该sku上未付款的订单数量 */
 	@Schema(description = "商品在付款减库存的状态下，该sku上未付款的订单数量")
-	@Excel(name = "商品在付款减库存的状态下，该sku上未付款的订单数量")
+	@ExcelProperty(value = "商品在付款减库存的状态下，该sku上未付款的订单数量")
 	private Long stocks;
 
 	/** 实际库存 */
 	@Schema(description = "实际库存")
-	@Excel(name = "实际库存")
+	@ExcelProperty(value = "实际库存")
 	private Long actualStocks;
 
 	/** sku图片 */
 	@Schema(description = "sku图片")
-	@Excel(name = "sku图片")
+	@ExcelProperty(value = "sku图片")
 	private String pic;
 
 	/** sku名称 */
 	@Schema(description = "sku名称")
-	@Excel(name = "sku名称")
+	@ExcelProperty(value = "sku名称")
 	private String skuName;
 
 	/** 商品名称 */
 	@Schema(description = "商品名称")
-	@Excel(name = "商品名称")
+	@ExcelProperty(value = "商品名称")
 	private String goodsName;
 
 	/** 0 正常 1 已被删除 */
 	@Schema(description = "0 正常 1 已被删除")
-	@Excel(name = "0 正常 1 已被删除")
+	@ExcelProperty(value = "0 正常 1 已被删除")
 	private Integer isDelete;
 
 	/** 创建时间 */
 	@Schema(description = "创建时间")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
+	@ExcelProperty(value = "创建时间")
 	private Date createdTime;
 
 	/** 更新时间 */
 	@Schema(description = "更新时间")
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
+	@ExcelProperty(value = "更新时间")
 	private Date updatedTime;
 
 	/** 版本号 */
 	@Schema(description = "版本号")
-	@Excel(name = "版本号")
+	@ExcelProperty(value = "版本号")
 	private Long version;
 
 	public void setSkuId(Long skuId) {

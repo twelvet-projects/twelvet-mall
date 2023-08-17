@@ -1,31 +1,21 @@
 package com.twelvet.server.system.controller;
 
-import java.util.List;
-
+import cn.twelvet.excel.annotation.ResponseExcel;
 import com.twelvet.api.system.domain.User;
+import com.twelvet.framework.core.application.controller.TWTController;
+import com.twelvet.framework.core.application.domain.JsonResult;
 import com.twelvet.framework.core.application.page.TableDataInfo;
-import jakarta.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Operation;
+import com.twelvet.framework.jdbc.web.utils.PageUtils;
 import com.twelvet.framework.log.annotation.Log;
 import com.twelvet.framework.log.enums.BusinessType;
-import org.springframework.security.access.prepost.PreAuthorize;
 import com.twelvet.server.system.service.IUserService;
-import com.twelvet.framework.core.application.controller.TWTController;
-import com.twelvet.framework.core.application.domain.AjaxResult;
-import com.twelvet.framework.core.application.domain.JsonResult;
-import com.twelvet.framework.utils.poi.ExcelUtils;
-import com.twelvet.framework.jdbc.web.utils.PageUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 客户Controller
@@ -56,15 +46,16 @@ public class UserController extends TWTController {
 
 	/**
 	 * 导出客户列表
+	 *
+	 * @return
 	 */
+	@ResponseExcel(name = "导出客户列表")
 	@Operation(summary = "导出客户列表")
 	@PreAuthorize("@role.hasPermi('{permissionPrefix}:export')")
 	@Log(service = "客户", businessType = BusinessType.EXPORT)
 	@PostMapping("/export")
-	public void export(HttpServletResponse response, User user) {
-		List<User> list = userService.selectUserList(user);
-		ExcelUtils<User> util = new ExcelUtils<User>(User.class);
-		util.exportExcel(response, list, "客户数据");
+	public List<User> export(User user) {
+		return userService.selectUserList(user);
 	}
 
 	/**
