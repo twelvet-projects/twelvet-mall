@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java-version: [ 21 ]
+        java-version: [ 20 ]
     steps:
       - uses: actions/checkout@v3
 
