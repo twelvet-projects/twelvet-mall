@@ -37,4 +37,9 @@ public interface ServiceNameConstants {
 	 */
 	String GOODS_SERVICE = "twelvet-server-goods";
 
+	/**
+	 * Live服务的serviceId
+	 */
+	String LIVE_SERVICE = "twelvet-server-live";
+
 }

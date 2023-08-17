@@ -21,6 +21,7 @@
         <module>twelvet-server-gen</module>
         <module>twelvet-server-goods</module>
         <module>twelvet-server-im</module>
+        <module>twelvet-live</module>
     </modules>
 
     <dependencies>
