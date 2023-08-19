@@ -21,8 +21,7 @@ public class ChatWebSocket {
 	private static final Logger log = LoggerFactory.getLogger(ChatWebSocket.class);
 
 	/**
-	 * 链接的NettySession，需要进行心跳检测
-	 * 在分布式下，记录NettySession在哪个机器上
+	 * 链接的NettySession，需要进行心跳检测 在分布式下，记录NettySession在哪个机器上
 	 * 在需要发送的时候通过机器IP，或者其他唯一特征进行发送即可完成分布式
 	 */
 	private final static Map<ChannelId, NettySession> SESSIONS = new HashMap<>();
