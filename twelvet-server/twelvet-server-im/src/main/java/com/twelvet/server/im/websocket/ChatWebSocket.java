@@ -20,9 +20,9 @@ public class ChatWebSocket {
 
 	private static final Logger log = LoggerFactory.getLogger(ChatWebSocket.class);
 
-    /**
-     * 链接的NettySession，需要进行心跳检测
-     */
+	/**
+	 * 链接的NettySession，需要进行心跳检测
+	 */
 	private final static Map<ChannelId, NettySession> SESSIONS = new HashMap<>();
 
 	@BeforeHandshake
