@@ -30,10 +30,7 @@ public class ChatWebSocket {
 	public void handshake(NettySession nettySession, HttpHeaders headers, @RequestParam String req,
 			@RequestParam MultiValueMap reqMap, @PathVariable String arg, @PathVariable Map pathMap) {
 		nettySession.setSubprotocols("stomp");
-		if (!"ok".equals(req)) {
-			log.info("Authentication failed!");
-			// nettySession.close();
-		}
+		// TODO 登录认证
 	}
 
 	/**
@@ -48,7 +45,7 @@ public class ChatWebSocket {
 	@OnOpen
 	public void onOpen(NettySession nettySession, HttpHeaders headers, @RequestParam String req,
 			@RequestParam MultiValueMap reqMap, @PathVariable String arg, @PathVariable Map pathMap) {
-
+		log.info("one connection open");
 		SESSIONS.put(nettySession.id(), nettySession);
 	}
 
