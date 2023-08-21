@@ -1,10 +1,9 @@
 package com.twelvet.server.goods.service.impl;
 
-import com.twelvet.api.goods.domain.dto.OrderVO;
+import com.twelvet.api.goods.domain.dto.OrderDTO;
 import com.twelvet.framework.redis.service.RedisService;
 import com.twelvet.server.goods.mapper.GoodsMapper;
 import com.twelvet.server.goods.service.OrderService;
-import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +31,11 @@ public class OrderServiceImpl implements OrderService {
 
 	/**
 	 * 提交订单
-	 * @param orderVO 订单VO
+	 * @param orderDTO 订单VO
 	 */
 	@Override
-	public void submit(OrderVO orderVO) {
-		Long goodsId = orderVO.getGoodsId();
+	public void submit(OrderDTO orderDTO) {
+		Long goodsId = orderDTO.getGoodsId();
 		int deductionInventory = goodsMapper.deductionInventory(goodsId);
 
 		if (deductionInventory > 0) {

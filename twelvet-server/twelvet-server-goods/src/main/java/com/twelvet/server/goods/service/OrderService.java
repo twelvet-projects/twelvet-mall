@@ -1,6 +1,6 @@
 package com.twelvet.server.goods.service;
 
-import com.twelvet.api.goods.domain.dto.OrderVO;
+import com.twelvet.api.goods.domain.dto.OrderDTO;
 
 /**
  * @author twelvet
@@ -11,8 +11,8 @@ public interface OrderService {
 
 	/**
 	 * 提交订单
-	 * @param orderVO 订单VO
+	 * @param orderDTO 订单VO
 	 */
-	void submit(OrderVO orderVO);
+	void submit(OrderDTO orderDTO);
 
 }

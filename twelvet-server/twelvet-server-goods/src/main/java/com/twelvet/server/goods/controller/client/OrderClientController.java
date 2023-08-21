@@ -1,13 +1,12 @@
 package com.twelvet.server.goods.controller.client;
 
-import com.twelvet.api.goods.domain.dto.OrderVO;
+import com.twelvet.api.goods.domain.dto.OrderDTO;
 import com.twelvet.framework.core.application.controller.TWTController;
 import com.twelvet.framework.core.application.domain.AjaxResult;
 import com.twelvet.framework.security.annotation.AuthIgnore;
 import com.twelvet.server.goods.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,8 +34,8 @@ public class OrderClientController extends TWTController {
 	 */
 	@Operation(summary = "提交订单")
 	@PostMapping("/submit")
-	public AjaxResult submit(@RequestBody OrderVO orderVO) {
-		orderService.submit(orderVO);
+	public AjaxResult submit(@RequestBody OrderDTO orderDTO) {
+		orderService.submit(orderDTO);
 		return AjaxResult.success();
 	}
 

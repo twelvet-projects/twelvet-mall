@@ -2,17 +2,17 @@ package com.twelvet.server.im.websocket;
 
 import cn.twelvet.websocket.netty.annotation.*;
 import cn.twelvet.websocket.netty.domain.NettySession;
+import com.twelvet.api.im.domain.dto.IMDTO;
+import com.twelvet.api.im.domain.vo.IMVO;
 import com.twelvet.framework.utils.JacksonUtils;
 import io.netty.channel.ChannelId;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.timeout.IdleStateEvent;
-import kotlin.collections.ArrayDeque;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.MultiValueMap;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @WebSocketEndpoint(path = "/", port = "88")
@@ -46,13 +46,48 @@ public class ChatWebSocket {
 	public void onOpen(NettySession nettySession, HttpHeaders headers, @RequestParam String req,
 			@RequestParam MultiValueMap reqMap, @PathVariable String arg, @PathVariable Map pathMap) {
 		log.info("one connection open");
+		ChannelId channelId = nettySession.id();
 		SESSIONS.put(nettySession.id(), nettySession);
+
+		IMVO imvo = new IMVO();
+		imvo.setSelf(false);
+		imvo.setInfo("新增用户");
+		imvo.setUsername("系统");
+		String message = JacksonUtils.toJson(imvo);
+
+		for (Map.Entry<ChannelId, NettySession> channelIdNettySessionEntry : SESSIONS.entrySet()) {
+			ChannelId channelIdTemp = channelIdNettySessionEntry.getKey();
+            NettySession session = channelIdNettySessionEntry.getValue();
+			if (!channelIdTemp.equals(channelId)) {
+				session.sendText(message);
+			}else{
+				IMVO imVOSelf = new IMVO();
+                imVOSelf.setSelf(true);
+                imVOSelf.setInfo("成功连接服务");
+                imVOSelf.setUsername("系统");
+				String messageSelf = JacksonUtils.toJson(imVOSelf);
+                session.sendText(messageSelf);
+			}
+		}
+
 	}
 
 	@OnClose
 	public void onClose(NettySession nettySession) {
 		log.info("one connection closed");
 		SESSIONS.remove(nettySession.id());
+
+		IMVO imvo = new IMVO();
+		imvo.setSelf(false);
+		imvo.setInfo("用户退出聊天室");
+		imvo.setUsername("系统");
+		String message = JacksonUtils.toJson(imvo);
+
+		for (Map.Entry<ChannelId, NettySession> channelIdNettySessionEntry : SESSIONS.entrySet()) {
+			ChannelId channelIdTemp = channelIdNettySessionEntry.getKey();
+			NettySession session = channelIdNettySessionEntry.getValue();
+			session.sendText(message);
+		}
 	}
 
 	@OnError
@@ -63,12 +98,15 @@ public class ChatWebSocket {
 	@OnMessage
 	public void onMessage(NettySession nettySession, String message) {
 		ChannelId channelId = nettySession.id();
-		Map<String, Object> msgMap = JacksonUtils.readMap(message);
+
+		IMDTO imDTO = JacksonUtils.readValue(message, IMDTO.class);
+        assert imDTO != null;
+        imDTO.setSelf(false);
 		for (Map.Entry<ChannelId, NettySession> channelIdNettySessionEntry : SESSIONS.entrySet()) {
 			ChannelId channelIdTemp = channelIdNettySessionEntry.getKey();
 			if (!channelIdTemp.equals(channelId)) {
 				NettySession session = channelIdNettySessionEntry.getValue();
-				session.sendText(message);
+				session.sendText(JacksonUtils.toJson(imDTO));
 			}
 		}
 	}

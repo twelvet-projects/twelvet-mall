@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @Description: 提交订单VO
  */
 @Schema(description = "商品对象")
-public class OrderVO implements Serializable {
+public class OrderDTO implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
