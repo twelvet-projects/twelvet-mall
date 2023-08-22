@@ -57,16 +57,17 @@ public class ChatWebSocket {
 
 		for (Map.Entry<ChannelId, NettySession> channelIdNettySessionEntry : SESSIONS.entrySet()) {
 			ChannelId channelIdTemp = channelIdNettySessionEntry.getKey();
-            NettySession session = channelIdNettySessionEntry.getValue();
+			NettySession session = channelIdNettySessionEntry.getValue();
 			if (!channelIdTemp.equals(channelId)) {
 				session.sendText(message);
-			}else{
+			}
+			else {
 				IMVO imVOSelf = new IMVO();
-                imVOSelf.setSelf(true);
-                imVOSelf.setInfo("成功连接服务");
-                imVOSelf.setUsername("系统");
+				imVOSelf.setSelf(true);
+				imVOSelf.setInfo("成功连接服务");
+				imVOSelf.setUsername("系统");
 				String messageSelf = JacksonUtils.toJson(imVOSelf);
-                session.sendText(messageSelf);
+				session.sendText(messageSelf);
 			}
 		}
 
@@ -100,8 +101,8 @@ public class ChatWebSocket {
 		ChannelId channelId = nettySession.id();
 
 		IMDTO imDTO = JacksonUtils.readValue(message, IMDTO.class);
-        assert imDTO != null;
-        imDTO.setSelf(false);
+		assert imDTO != null;
+		imDTO.setSelf(false);
 		for (Map.Entry<ChannelId, NettySession> channelIdNettySessionEntry : SESSIONS.entrySet()) {
 			ChannelId channelIdTemp = channelIdNettySessionEntry.getKey();
 			if (!channelIdTemp.equals(channelId)) {
