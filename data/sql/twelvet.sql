@@ -674,7 +674,7 @@ INSERT INTO `sys_menu`
 VALUES (1094, '直播管理', 0, 1, '/live', NULL, '1', 'M', '0', '0', NULL, 'icon-live', 'admin', '2023-08-21 16:43:33',
         '', NULL, '');
 INSERT INTO `sys_menu`
-VALUES (1095, '直播间', 1094, 1, '/live/room', '/live/LiveRoom/index', '1', 'C', '0', '0', 'live:live_room',
+VALUES (1095, '直播间', 1094, 1, '/live/room', '/live/room/index', '1', 'C', '0', '0', 'live:live_room',
         'icon-live', 'admin', '2023-08-21 16:44:23', 'admin', '2023-08-21 16:59:29', '');
 
 -- ----------------------------
