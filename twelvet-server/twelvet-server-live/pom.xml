@@ -50,10 +50,10 @@
             <artifactId>twelvet-framework-security</artifactId>
         </dependency>
 
-        <!--WebSocket-->
+        <!--javacv-->
         <dependency>
-            <groupId>cn.twelvet.websocket</groupId>
-            <artifactId>netty-websocket-spring-boot-starter</artifactId>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
         </dependency>
     </dependencies>
 

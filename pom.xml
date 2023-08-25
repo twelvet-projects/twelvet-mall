@@ -66,6 +66,7 @@
         <netty-websocket.version>1.0.6</netty-websocket.version>
         <rocketmq.version>2.2.3</rocketmq.version>
         <excel-spring-boot-starter.version>3.0.1</excel-spring-boot-starter.version>
+        <javacv.version>1.5.9</javacv.version>
 
         <docker.plugin.version>0.32.0</docker.plugin.version>
         <spring.checkstyle.plugin>0.0.39</spring.checkstyle.plugin>
@@ -249,6 +250,13 @@
                 <groupId>com.twelvet</groupId>
                 <artifactId>twelvet-framework-datascope</artifactId>
                 <version>${twelvet.version}</version>
+            </dependency>
+
+            <!--javacv-->
+            <dependency>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacv</artifactId>
+                <version>${javacv.version}</version>
             </dependency>
 
             <!-- 接口文档模块 -->
