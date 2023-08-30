@@ -50,10 +50,10 @@
             <artifactId>twelvet-framework-security</artifactId>
         </dependency>
 
-        <!--javacv-->
+        <!--Live API-->
         <dependency>
-            <groupId>org.bytedeco</groupId>
-            <artifactId>javacv</artifactId>
+            <groupId>com.twelvet</groupId>
+            <artifactId>twelvet-api-live</artifactId>
         </dependency>
     </dependencies>
 

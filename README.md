@@ -12,6 +12,26 @@
 [![star](https://gitee.com/twelvet/twelvet/badge/star.svg?theme=white)](https://gitee.com/twelvet/twelvet/stargazers)
 [![fork](https://gitee.com/twelvet/twelvet/badge/fork.svg?theme=white)](https://gitee.com/twelvet/twelvet/members)
 
+## 直播启动
+```ssh
+docker run --name srs -d  ossrs/srs:5
+
+docker cp srs:/usr/local/srs/conf /home/data/docker/srs \
+        && docker cp srs:/usr/local/srs/objs /home/data/docker/srs
+
+docker run -d --rm \
+        --name srs \
+        --env CANDIDATE=外网ip地址 \
+        -p 1935:1935 \
+        -p 8888:8080 \
+        -p 1985:1985 \
+        -p 8000:8000/udp \
+        -v /home/data/docker/srs/conf:/usr/local/srs/conf/ \
+        -v /home/data/docker/srs/objs:/usr/local/srs/objs/ \
+        ossrs/srs:5 \
+        objs/srs -c conf/rtc2rtmp.conf
+```
+
 ## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
 
 # 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)

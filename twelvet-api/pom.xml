@@ -22,6 +22,7 @@
         <module>twelvet-api-auth</module>
         <module>twelvet-api-im</module>
         <module>twelvet-api-goods</module>
+        <module>twelvet-api-live</module>
     </modules>
 
     <dependencies>
