@@ -78,6 +78,26 @@ services:
     links:
       - twelvet-gateway
 
+  twelvet-srs:
+    container_name: twelvet-srs
+    image: twelvet-srs
+    ports:
+      - "8080:8080"
+      - "1935:1935"
+      - "1985:1985"
+      - "8000:8000/udp"
+    restart: always
+    privileged: true
+    build:
+      context: ./srs
+      dockerfile: dockerfile
+    volumes:
+      - ./nacos/logs/:/home/nacos/logs
+      - ./nacos/conf/application.properties:/home/nacos/conf/application.properties
+    environment:
+      - MODE=standalone
+      - TZ=Asia/Shanghai
+
   twelvet-gateway:
     container_name: twelvet-gateway
     image: twelvet-gateway
