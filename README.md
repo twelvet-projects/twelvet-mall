@@ -12,7 +12,26 @@
 [![star](https://gitee.com/twelvet/twelvet/badge/star.svg?theme=white)](https://gitee.com/twelvet/twelvet/stargazers)
 [![fork](https://gitee.com/twelvet/twelvet/badge/fork.svg?theme=white)](https://gitee.com/twelvet/twelvet/members)
 
-## 直播启动
+## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
+
+# 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)
+
+## 缓存（多级缓存：本地缓存，前端缓存）、使用文件缓存系统进行降低缓存成本
+
+## 分库分表
+
+## 限流
+
+## ES + Hbase
+
+## 集群(多副本沉余)
+
+## 冷热分离
+
+## 就近读取
+
+
+# 直播
 ```ssh
 docker run --name srs -d  ossrs/srs:5
 
@@ -31,24 +50,8 @@ docker run -d --rm \
         ossrs/srs:5 \
         objs/srs -c conf/rtc2rtmp.conf
 ```
-
-## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
-
-# 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)
-
-## 缓存（多级缓存：本地缓存，前端缓存）、使用文件缓存系统进行降低缓存成本
-
-## 分库分表
-
-## 限流
-
-## ES + Hbase
-
-## 集群(多副本沉余)
-
-## 冷热分离
-
-## 就近读取
+## 本项目直播原理
+主要通过操作开源srs直播服务进行推流、播放。鉴权回调
 
 一款基于Spring Cloud Alibaba的权限管理系统，集成市面上流行库，可以作用为快速开发的一个框架使用
 
