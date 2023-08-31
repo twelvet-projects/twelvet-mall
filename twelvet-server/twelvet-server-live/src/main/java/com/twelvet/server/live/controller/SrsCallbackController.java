@@ -1,4 +1,4 @@
-package com.twelvet.server.live.controller.api;
+package com.twelvet.server.live.controller;
 
 import com.twelvet.api.live.dto.SrsRtcDTO;
 import com.twelvet.framework.security.annotation.AuthIgnore;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author twelvet
  */
 @AuthIgnore
-@Tag(description = "SrsApi", name = "SRS HTTP鉴权回调")
+@Tag(description = "SrsCallbackController", name = "SRS HTTP鉴权回调")
 @RestController
-@RequestMapping("/srs")
-public class SrsApi {
+@RequestMapping("/srs_callback")
+public class SrsCallbackController {
 
 	/**
 	 * 直播推流回调
