@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class SrsServiceImpl implements SrsService {
 
-	@Autowired
+	@Autowired(required = false)
 	private RestTemplate restTemplate;
 
 	@Override
