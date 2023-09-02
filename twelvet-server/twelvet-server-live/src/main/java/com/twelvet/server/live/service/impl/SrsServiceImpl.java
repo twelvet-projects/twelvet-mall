@@ -21,6 +21,8 @@ public class SrsServiceImpl implements SrsService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
+		srsRtcDTO.setStreamurl("webrtc://localhost/live/livestream/1");
+
 		// 封装请求体和请求头
 		HttpEntity<SrsRtcDTO> httpEntity = new HttpEntity<>(srsRtcDTO, headers);
 
