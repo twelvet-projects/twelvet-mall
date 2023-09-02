@@ -7,17 +7,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * SRS服务操作
  *
  * @author twelvet
  */
-@Tag(description = "RedisController", name = "缓存监控")
+@Tag(description = "SrsController", name = "SRS服务操作")
 @RestController
 @RequestMapping("/")
 public class SrsController {
@@ -30,21 +27,19 @@ public class SrsController {
 	 * @param srsRtcDTO SrsRtcDTO
 	 * @return String
 	 */
-	@AuthIgnore
 	@Operation(summary = "直播推流")
-	@GetMapping("/push")
+	@PostMapping("/push")
 	public ResponseEntity<Object> push(@RequestBody SrsRtcDTO srsRtcDTO) {
 		return srsService.push(srsRtcDTO);
 	}
 
 	/**
-	 * 直播流拉取
+	 * WebRTC直播流拉取(其它格式可以直接读取流地址)
 	 * @param srsRtcDTO SrsRtcDTO
 	 * @return String
 	 */
-	@AuthIgnore
 	@Operation(summary = "直播流拉取")
-	@GetMapping("/pull")
+	@PostMapping("/pull")
 	public ResponseEntity<Object> pull(@RequestBody SrsRtcDTO srsRtcDTO) {
 		return srsService.pull(srsRtcDTO);
 	}

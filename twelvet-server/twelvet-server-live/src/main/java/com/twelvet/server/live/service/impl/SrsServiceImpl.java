@@ -15,9 +15,6 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class SrsServiceImpl implements SrsService {
 
-	@Autowired(required = false)
-	private RestTemplate restTemplate;
-
 	@Override
 	public ResponseEntity<Object> push(SrsRtcDTO srsRtcDTO) {
 		// 设置请求头
@@ -28,7 +25,9 @@ public class SrsServiceImpl implements SrsService {
 		HttpEntity<SrsRtcDTO> httpEntity = new HttpEntity<>(srsRtcDTO, headers);
 
 		// 发送 POST 请求
-		String url = "http://live.io:1985/rtc/v1/publish/";
+		String url = "http://127.0.0.1:1985/rtc/v1/publish/";
+
+		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.exchange(url, HttpMethod.POST, httpEntity, Object.class);
 
 	}
@@ -43,7 +42,8 @@ public class SrsServiceImpl implements SrsService {
 		HttpEntity<SrsRtcDTO> httpEntity = new HttpEntity<>(srsRtcDTO, headers);
 
 		// 发送 POST 请求
-		String url = "http://live.io:1985/rtc/v1/play/";
+		String url = "http://127.0.0.1:1985/rtc/v1/play/";
+		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.exchange(url, HttpMethod.POST, httpEntity, Object.class);
 	}
 
