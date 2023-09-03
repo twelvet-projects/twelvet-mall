@@ -31,7 +31,7 @@
 ## 就近读取
 
 
-# 直播
+# 直播(基于WebRTC SRS)支持WebRTC RTMP FLV HLS等等协议格式，合流混流
 ```ssh
 docker run --name srs -d  ossrs/srs:5
 

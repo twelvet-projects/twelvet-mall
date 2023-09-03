@@ -1,6 +1,7 @@
 package com.twelvet.server.live.service.impl;
 
 import com.twelvet.api.live.dto.SrsRtcDTO;
+import com.twelvet.framework.security.utils.SecurityUtils;
 import com.twelvet.server.live.service.SrsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -21,7 +22,9 @@ public class SrsServiceImpl implements SrsService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		srsRtcDTO.setStreamurl("webrtc://localhost/live/livestream/1");
+		Long userId = SecurityUtils.getLoginUser().getUserId();
+
+		srsRtcDTO.setStreamurl("webrtc://localhost/live/livestream/" + userId);
 
 		// 封装请求体和请求头
 		HttpEntity<SrsRtcDTO> httpEntity = new HttpEntity<>(srsRtcDTO, headers);
