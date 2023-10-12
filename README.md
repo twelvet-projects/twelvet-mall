@@ -68,7 +68,7 @@ docker run -d --rm \
 由此，我们应当把更多的时间投入到其它更有意义的事情当中，我们深知知识的重要性，但，并不希望仅拥有单一”知识“。
 去感受/关爱更多光彩，无论人、事、物，它们也将成为你最好的灵感。
 
-后端源码：https://github.com/twelvet-s/twelvet-mall
+后端源码：https://github.com/twelvet-projects/twelvet-mall
 
 前端源码：https://github.com/twelvet-s/twelvet-mall-ui
 
