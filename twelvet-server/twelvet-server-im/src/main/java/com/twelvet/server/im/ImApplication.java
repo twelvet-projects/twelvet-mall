@@ -38,28 +38,32 @@ import java.util.Properties;
 @SpringBootApplication
 public class ImApplication implements CommandLineRunner {
 
-    @Autowired
-    private NacosDiscoveryProperties nacosDiscoveryProperties;
+	@Autowired
+	private NacosDiscoveryProperties nacosDiscoveryProperties;
 
-    public static void main(String[] args) {
-        SpringApplication.run(ImApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ImApplication.class, args);
+	}
 
-    @Override
-    public void run(String... args) throws Exception {
-        Properties properties = new Properties();
-        properties.setProperty(PropertyKeyConst.SERVER_ADDR, nacosDiscoveryProperties.getServerAddr());
-        properties.setProperty(PropertyKeyConst.USERNAME, nacosDiscoveryProperties.getUsername());
-        properties.setProperty(PropertyKeyConst.PASSWORD, nacosDiscoveryProperties.getPassword());
-        properties.setProperty(PropertyKeyConst.NAMESPACE, nacosDiscoveryProperties.getNamespace());
-        InetAddress address = InetAddress.getLocalHost();
+	@Override
+	public void run(String... args) throws Exception {
+		Properties properties = new Properties();
+		properties.setProperty(PropertyKeyConst.SERVER_ADDR, nacosDiscoveryProperties.getServerAddr());
+		properties.setProperty(PropertyKeyConst.USERNAME, nacosDiscoveryProperties.getUsername());
+		properties.setProperty(PropertyKeyConst.PASSWORD, nacosDiscoveryProperties.getPassword());
+		properties.setProperty(PropertyKeyConst.NAMESPACE, nacosDiscoveryProperties.getNamespace());
+		InetAddress address = InetAddress.getLocalHost();
 
-        Map<InetSocketAddress, WebsocketServer> addressWebsocketServerMap = WebSocketEndpointExporter.getAddressWebsocketServerMap();
-        for (Map.Entry<InetSocketAddress, WebsocketServer> inetSocketAddressWebsocketServerEntry : addressWebsocketServerMap.entrySet()) {
-            NamingService namingService = NamingFactory.createNamingService(properties);
-            WebsocketServer websocketServer = inetSocketAddressWebsocketServerEntry.getValue();
-            WebSocketEndpointServer endpointServer = websocketServer.getEndpointServer();
-            namingService.registerInstance(ServiceNameConstants.WEB_SOCKET_SERVICE, address.getHostAddress(), endpointServer.getPort());
-        }
-    }
+		Map<InetSocketAddress, WebsocketServer> addressWebsocketServerMap = WebSocketEndpointExporter
+			.getAddressWebsocketServerMap();
+		for (Map.Entry<InetSocketAddress, WebsocketServer> inetSocketAddressWebsocketServerEntry : addressWebsocketServerMap
+			.entrySet()) {
+			NamingService namingService = NamingFactory.createNamingService(properties);
+			WebsocketServer websocketServer = inetSocketAddressWebsocketServerEntry.getValue();
+			WebSocketEndpointServer endpointServer = websocketServer.getEndpointServer();
+			namingService.registerInstance(ServiceNameConstants.WEB_SOCKET_SERVICE, address.getHostAddress(),
+					endpointServer.getPort());
+		}
+	}
+
 }
