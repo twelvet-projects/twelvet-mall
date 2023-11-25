@@ -47,6 +47,7 @@ public class ImApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// ws://127.0.0.1:1010/websocket
 		Properties properties = new Properties();
 		properties.setProperty(PropertyKeyConst.SERVER_ADDR, nacosDiscoveryProperties.getServerAddr());
 		properties.setProperty(PropertyKeyConst.USERNAME, nacosDiscoveryProperties.getUsername());
