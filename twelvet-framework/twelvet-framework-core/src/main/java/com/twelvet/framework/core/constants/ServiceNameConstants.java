@@ -33,6 +33,11 @@ public interface ServiceNameConstants {
 	String IM_SERVICE = "twelvet-server-im";
 
 	/**
+	 * IM WebSocket服务的serviceId
+	 */
+	String WEB_SOCKET_SERVICE = "twelvet-server-web-socket";
+
+	/**
 	 * Goods服务的serviceId
 	 */
 	String GOODS_SERVICE = "twelvet-server-goods";

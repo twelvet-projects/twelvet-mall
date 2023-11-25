@@ -42,12 +42,12 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
 
-        <spring-boot-dependencies.version>3.1.3</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.1.6</spring-boot-dependencies.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2022.0.0.0-RC2</spring-cloud-alibaba.version>
         <io.seata.version>1.6.1</io.seata.version>
         <spring-boot-admin.version>3.1.0</spring-boot-admin.version>
-        <spring-boot.mybatis>3.0.1</spring-boot.mybatis>
+        <spring-boot.mybatis>3.0.3</spring-boot.mybatis>
         <spring.authorization.version>3.1.2</spring.authorization.version>
 
         <swagger.core.version>2.2.9</swagger.core.version>
@@ -63,7 +63,7 @@
         <hutool.version>5.8.19</hutool.version>
         <redisson.version>3.20.0</redisson.version>
         <qiniu.version>7.13.0</qiniu.version>
-        <netty-websocket.version>1.0.6</netty-websocket.version>
+        <netty-websocket.version>1.0.1</netty-websocket.version>
         <rocketmq.version>2.2.3</rocketmq.version>
         <excel-spring-boot-starter.version>3.0.1</excel-spring-boot-starter.version>
 
@@ -330,7 +330,7 @@
 
             <!--WebSocket-->
             <dependency>
-                <groupId>cn.twelvet.websocket</groupId>
+                <groupId>cn.twelvet</groupId>
                 <artifactId>netty-websocket-spring-boot-starter</artifactId>
                 <version>${netty-websocket.version}</version>
             </dependency>
