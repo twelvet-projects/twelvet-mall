@@ -10,7 +10,7 @@ usage() {
 init() {
   # copy sql
   echo "begin copy sql "
-  cp ../data/sql/twelvet.sql ./mysql/db
+  cp ../data/sql/twelvet_mall.sql ./mysql/db
   cp ../data/sql/twelvet_nacos.sql ./mysql/db
 
   # copy jar

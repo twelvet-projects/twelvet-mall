@@ -1,11 +1,11 @@
-DROP DATABASE IF EXISTS `twelvet-goods`;
+DROP DATABASE IF EXISTS `twelvet_mall_goods`;
 
-CREATE DATABASE `twelvet-goods` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE `twelvet_mall_goods` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-USE `twelvet-goods`;
+USE `twelvet_mall_goods`;
 
 -- ----------------------------
 -- Table structure for goods

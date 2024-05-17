@@ -1,15 +1,15 @@
 DROP
-    DATABASE IF EXISTS `twelvet`;
+    DATABASE IF EXISTS `twelvet_mall`;
 
 CREATE
-    DATABASE `twelvet` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    DATABASE `twelvet_mall` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 SET NAMES utf8mb4;
 SET
     FOREIGN_KEY_CHECKS = 0;
 
 USE
-    `twelvet`;
+    `twelvet_mall`;
 
 -- ----------------------------
 -- Table structure for gen_table
