@@ -1,4 +1,4 @@
-[中文](https://github.com/twelvet-s/twelvet/blob/master/README.md) | [English](https://github.com/twelvet-s/twelvet/blob/master/README_EN.md)
+[中文](https://github.com/twelvet-projects/twelvet/blob/master/README.md) | [English](https://github.com/twelvet-projects/twelvet/blob/master/README_EN.md)
 
 # 🚀twelvet
 
@@ -12,7 +12,7 @@
 [![star](https://gitee.com/twelvet/twelvet/badge/star.svg?theme=white)](https://gitee.com/twelvet/twelvet/stargazers)
 [![fork](https://gitee.com/twelvet/twelvet/badge/fork.svg?theme=white)](https://gitee.com/twelvet/twelvet/members)
 
-## 这是基于[twelvet](https://github.com/twelvet-s/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
+## 这是基于[twelvet](https://github.com/twelvet-projects/twelvet)微服务脚手架的秒杀商城系统，仅针对核心高并发技术，与实际商城无关。
 
 # 总结的高并发要诀，欢迎进行改善(按实际情况设计，切勿过度设计)
 
